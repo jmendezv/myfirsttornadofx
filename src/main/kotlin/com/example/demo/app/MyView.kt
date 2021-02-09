@@ -2,19 +2,16 @@ package com.example.demo.app
 
 import com.example.demo.app.controller.MyController
 import javafx.beans.property.SimpleIntegerProperty
-import javafx.concurrent.Task
-import javafx.scene.Parent
 import javafx.scene.control.Button
+import javafx.scene.control.ButtonType
 import javafx.scene.control.Label
+import javafx.scene.control.TextInputDialog
 import javafx.scene.layout.BorderPane
 import javafx.scene.paint.Color
 import javafx.scene.text.Font
-import javafx.stage.Modality
-import javafx.stage.StageStyle
+import javafx.stage.FileChooser
 import tornadofx.*
 import java.io.File
-import java.nio.file.Files
-import java.nio.file.Path
 
 
 class MyView : View() {
@@ -38,11 +35,72 @@ class MyView : View() {
         counterLabel.bind(counter)
 
         incrementButton.action {
-            onIncrementButton()
+            val filename = getFilename()
+            information("Entra nombre de fichero",
+                filename,
+                ButtonType.CLOSE,
+                owner = currentWindow,
+            title = "Editor de textos")
         }
     }
 
+    /*
+    * Aquest mètode retorna un File o null
+    * */
+    fun openFile() : File? {
+        val fileChooser = FileChooser()
+        fileChooser.title = "Obre Estada"
+
+        fileChooser.initialDirectory = File("/users/pep")
+        fileChooser.extensionFilters.addAll(
+            FileChooser.ExtensionFilter("Texto", "*.txt")
+//            FileChooser.ExtensionFilter("All Files", "*.*")
+        )
+        val selectedFile: File? = fileChooser.showOpenDialog(currentWindow)
+        return selectedFile
+
+    }
+
+    /*
+    * Aquest mètode retorna un File o null
+    * */
+    fun openFile2(): File? {
+        val title = "Editor de texto"
+        val filters = arrayOf(FileChooser.ExtensionFilter("Texto", "*.txt"))
+        val mode = FileChooserMode.Single
+        val owner = currentWindow
+        val files = chooseFile(title, filters, mode, owner)
+        return if (files.size > 0) files[0]
+        else null
+    }
+
+    /*
+    * Aquest mètode retorna una cadena o null
+    * */
+    fun getFilename(): String? {
+        var filename: String? = null
+        val dialog = TextInputDialog()
+        dialog.setTitle("Editor de textos")
+        dialog.contentText = "Nombre de archivo"
+        dialog.showAndWait()
+            .ifPresent { string ->
+                filename = string
+            }
+        return filename
+    }
+
+
     private fun onIncrementButton() {
+
+        information("Titulo", "Se ha guardado correctament")
+
+        confirmation("nom de fitxer") { resp ->
+            when(resp) {
+                ButtonType.OK -> {
+
+                }
+            }
+        }
 
         runAsync {
 //                println(Thread.currentThread())

@@ -49,10 +49,11 @@
             <Button fx:id="incrementButton" text="Click to increment" />
         </VBox>
     </center>
+
     <bottom>
         <ButtonBar prefHeight="40.0" prefWidth="950.0" BorderPane.alignment="CENTER">
             <buttons>
-                <Button fx:id="buttonProgressIndicator" visible="false"/>
+                <Button fx:id="buttonProgressIndicator" visible="false" text="hgfjhg"/>
                 <Button fx:id="buttonBarButtonDesa" mnemonicParsing="false" text="Desa"/>
             </buttons>
             <padding>
@@ -60,4 +61,5 @@
             </padding>
         </ButtonBar>
     </bottom>
+
 </BorderPane>
