@@ -22,18 +22,18 @@
         <VBox BorderPane.alignment="CENTER">
             <MenuBar>
                 <menus>
-                    <Menu text="Fitxer">
+                    <Menu text="%fitxer_lbl">
                         <items>
-                            <MenuItem fx:id="menu_fitxer_obre_id" text="Obre" />
+                            <MenuItem fx:id="menu_fitxer_obre_id" text="%obre_lbl" />
                             <SeparatorMenuItem />
-                            <MenuItem fx:id="menu_fitxer_surt_id" text="Surt" />
+                            <MenuItem fx:id="menu_fitxer_surt_id" text="%surt_lbl" />
                         </items>
                     </Menu>
                 </menus>
             </MenuBar>
             <ToolBar prefHeight="40.0" prefWidth="200.0">
                 <items>
-                    <Button fx:id="toolbar_surt_id" mnemonicParsing="false" text="Surt"/>
+                    <Button fx:id="toolbar_surt_id" mnemonicParsing="false" text="%surt_lbl"/>
                 </items>
             </ToolBar>
         </VBox>
@@ -41,20 +41,20 @@
 
     <center>
         <VBox alignment="CENTER" spacing="10">
-            <Label fx:id="counterLabel" text="0">
+            <Label fx:id="counterLabel" text="%initial_value">
                 <font>
                     <Font size="20"/>
                 </font>
             </Label>
-            <Button fx:id="incrementButton" text="Click to increment" />
+            <Button fx:id="incrementButton" text="%click_to_increment" />
         </VBox>
     </center>
 
     <bottom>
         <ButtonBar prefHeight="40.0" prefWidth="950.0" BorderPane.alignment="CENTER">
             <buttons>
-                <Button fx:id="buttonProgressIndicator" visible="false" text="hgfjhg"/>
-                <Button fx:id="buttonBarButtonDesa" mnemonicParsing="false" text="Desa"/>
+                <Button fx:id="buttonProgressIndicator" visible="false" text="XXXX"/>
+                <Button fx:id="buttonBarButtonDesa" mnemonicParsing="false" text="%desa_lbl"/>
             </buttons>
             <padding>
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>

@@ -2,6 +2,7 @@ package com.example.demo.app
 
 import com.example.demo.app.controller.MyController
 import javafx.beans.property.SimpleIntegerProperty
+import javafx.beans.property.SimpleStringProperty
 import javafx.scene.control.Button
 import javafx.scene.control.ButtonType
 import javafx.scene.control.Label
@@ -11,10 +12,11 @@ import javafx.scene.paint.Color
 import javafx.scene.text.Font
 import javafx.stage.FileChooser
 import tornadofx.*
+import tornadofx.FX.Companion.messages
 import java.io.File
 
 
-class MyView : View() {
+class MyView : View(messages["app_title"]) {
     // TornadoFX delegates
     override val root: BorderPane by fxml()
     val controller: MyController by inject()
@@ -35,12 +37,7 @@ class MyView : View() {
         counterLabel.bind(counter)
 
         incrementButton.action {
-            val filename = getFilename()
-            information("Entra nombre de fichero",
-                filename,
-                ButtonType.CLOSE,
-                owner = currentWindow,
-            title = "Editor de textos")
+            showDialog()
         }
     }
 
@@ -87,6 +84,35 @@ class MyView : View() {
                 filename = string
             }
         return filename
+    }
+
+    fun showDialog() {
+
+        dialog("Add note") {
+            val model = ViewModel()
+                val note = model.bind { SimpleStringProperty() }
+
+                field("Note") {
+                    textarea(note) {
+                        required()
+                        whenDocked { requestFocus() }
+                    }
+                }
+                buttonbar {
+                    button("Save note").action {
+                        model.commit {  }
+                    }
+                }
+            }
+    }
+
+    fun chooseFilename() {
+        val filename = getFilename()
+        information("Has escojido este fichero",
+            filename,
+            ButtonType.CLOSE,
+            owner = currentWindow,
+            title = "Editor de textos")
     }
 
 

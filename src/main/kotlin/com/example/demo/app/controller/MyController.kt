@@ -9,4 +9,8 @@ class MyController : Controller() {
     fun print(msg: String) {
        println(msg)
     }
+
+    fun tryLogin(user: String?, password: String?): Boolean {
+        return true
+    }
 }

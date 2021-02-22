@@ -1,21 +1,17 @@
 package com.example.demo.data
 
-import javafx.beans.property.SimpleIntegerProperty
-import javafx.beans.property.SimpleObjectProperty
 import javafx.beans.property.SimpleStringProperty
-import java.time.LocalDate
-import java.time.Period
 import tornadofx.*
 
-class Person(id: Int, name: String, birthday: LocalDate) {
-    val idProperty: SimpleIntegerProperty = SimpleIntegerProperty(id)
-    var id: Int by idProperty
-
-    val nameProperty = SimpleStringProperty(name)
+class Person(name: String? = null, title: String? = null) {
+    val nameProperty = SimpleStringProperty(this, "name", name)
     var name by nameProperty
 
-    val birthdayProperty = SimpleObjectProperty(birthday)
-    var birthday by birthdayProperty
+    val titleProperty = SimpleStringProperty(this, "title", title)
+    var title by titleProperty
+}
 
-    val age: Int get() = Period.between(birthday, LocalDate.now()).years
+class PersonModel(person: Person) : ItemViewModel<Person>(person) {
+    val name = bind(Person::nameProperty)
+    val title = bind(Person::titleProperty)
 }
