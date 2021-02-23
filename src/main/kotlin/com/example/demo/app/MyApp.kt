@@ -6,13 +6,13 @@ import tornadofx.*
 import java.nio.file.Paths
 import java.util.*
 
-class MyApp: App(CustomerEditor::class, Styles::class) {
+class MyApp: App(SimpleView::class, Styles::class) {
 
     override val configBasePath = Paths.get("/users/pep/conf")
 
     override fun start(stage: Stage) {
         super.start(stage)
-        stage.isResizable = false
+        stage.isResizable = true
         setStageIcon(Image("file://images/logo.png"))
         with(config) {
         }
